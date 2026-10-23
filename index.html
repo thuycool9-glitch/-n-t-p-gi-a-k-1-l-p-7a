@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ENGLISH 7 – MID-TERM 1 REVISION</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:"Segoe UI",Arial,sans-serif;background:linear-gradient(135deg,#5b8def,#8e5cf0 60%,#ffd45e);min-height:100vh;color:#233}
+#app{max-width:820px;margin:0 auto;padding:12px}
+.card{background:#fff;border-radius:22px;padding:18px;box-shadow:0 10px 30px #0003;animation:in .4s}
+@keyframes in{from{opacity:0;transform:translateY(12px)}}
+h1{margin:6px 0;color:#5a3fd0;text-align:center;font-size:clamp(24px,6vw,36px)}h3{margin:10px 0 4px;color:#5a3fd0}
+.c{text-align:center}.big{font-size:64px;animation:b 2s infinite}@keyframes b{50%{transform:translateY(-8px)}}
+button{font:inherit;cursor:pointer;border:0;border-radius:14px;padding:12px 18px;font-weight:700}button:disabled{opacity:.45;cursor:not-allowed}
+.pri{background:#ffb800;color:#322;font-size:19px;box-shadow:0 4px 0 #c88a00;margin:6px}.sec{background:#e8e4ff;color:#4a35b8;margin:6px}
+.chips button{background:#eef;margin:4px;color:#335}.chips .on{background:#5a3fd0;color:#fff}
+input.nm{font:inherit;padding:10px;border-radius:12px;border:2px solid #cbd;width:min(100%,300px);text-align:center}
+.opt{display:block;width:100%;text-align:left;margin:8px 0;background:#f4f6ff;border:2px solid #d5dbff;font-size:18px;font-weight:600}
+.opt.sel{border-color:#5a3fd0;background:#e6e0ff}.opt.ok{background:#c9f5d4;border-color:#22a24a}.opt.bad{background:#ffd3d3;border-color:#e03c3c}.hid{display:none}
+.top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px;font-weight:700;color:#4a35b8;font-size:15px}
+.bar{height:12px;background:#e5e5f5;border-radius:9px;margin:8px 0;overflow:hidden}.bar i{display:block;height:100%;background:linear-gradient(90deg,#34d399,#5b8def);transition:width .4s}
+.tag{display:inline-block;background:#fff3c4;color:#8a5a00;border-radius:20px;padding:3px 12px;font-size:13px;font-weight:700;margin:2px}
+.q{font-size:20px;font-weight:700;margin:10px 0;line-height:1.45}u{text-decoration:underline;text-decoration-thickness:3px;color:#d6336c}
+.pass{background:#fffbea;border-left:5px solid #ffb800;border-radius:10px;padding:10px 14px;max-height:220px;overflow:auto;font-size:15.5px;line-height:1.55;margin:8px 0;white-space:pre-line}mark{background:#ffd45e;border-radius:5px;padding:0 3px}
+.fi{font:inherit;font-size:18px;width:130px;border:0;border-bottom:3px solid #5a3fd0;background:#f1eeff;text-align:center;margin:0 4px;border-radius:6px}
+textarea{width:100%;font:inherit;font-size:17px;border:2px solid #cbd;border-radius:12px;padding:10px;min-height:80px}
+.w{display:inline-block;background:#e6e0ff;border:2px solid #b9a9ff;border-radius:12px;padding:8px 12px;margin:4px;font-weight:700;cursor:pointer;font-size:17px}
+.zone{min-height:56px;border:2px dashed #9a87f5;border-radius:14px;padding:4px;margin:8px 0;background:#faf8ff}
+.mr{display:flex;gap:8px;align-items:center;margin:8px 0;flex-wrap:wrap}.mr b{flex:1 1 200px}.mr select{font:inherit;padding:8px;border-radius:10px;border:2px solid #cbd;flex:1 1 140px}
+.fb{border-radius:14px;padding:12px;margin:10px 0;font-weight:600;animation:in .3s}.fb.ok{background:#d6f8e0;color:#116a32}.fb.no{background:#ffe0e0;color:#a31d1d}.fb small{display:block;font-weight:500;color:#333;margin-top:4px}
+.stars{font-size:46px}table{width:100%;border-collapse:collapse;margin:10px 0}td,th{border-bottom:1px solid #e3e0f5;padding:7px;text-align:center}th{background:#f1eeff;color:#4a35b8}
+.stat{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}.stat div{background:#f1eeff;border-radius:14px;padding:8px 14px;text-align:center;min-width:110px}.stat b{display:block;font-size:22px;color:#5a3fd0}
+.rv{border-left:5px solid #e03c3c;background:#fff6f6;border-radius:10px;padding:8px 12px;margin:10px 0}
+#how{position:fixed;inset:0;background:#0007;display:none;align-items:center;justify-content:center;padding:14px;z-index:9}#how .card{max-width:520px;max-height:90vh;overflow:auto}
+</style></head><body><div id="app"></div><div id="how"><div class="card"><h3>HOW TO PLAY</h3><p>1. Type your name, choose the number of questions and a mode.<br>2. Answer each question, then press <b>SUBMIT ANSWER</b>.<br>3. Correct answer = <b>+10</b>. 3 correct answers in a row = <b>+5 streak bonus</b>.<br>4. <b>Practice Mode</b>: no timer, no penalty. <b>Challenge Mode</b>: timer on, and 50/50 hint on multiple-choice costs 5 points.<br>5. Finish all 6 rounds to earn badges and stars ⭐. Use <b>REVIEW WRONG ANSWERS</b> at the end.</p><div class="c"><button class="pri" onclick="how.style.display='none'">GOT IT!</button></div></div></div>
+<script>
+const RN=["Vocabulary","Grammar","Pronunciation","Communication","Reading","Writing"],
+RT=["VOCABULARY CHALLENGE","GRAMMAR MASTER","PRONUNCIATION DETECTIVE","COMMUNICATION","READING CHAMPION","WRITING PUZZLE"],
+RI=["📚","✏️","🎧","💬","📖","🧩"],
+TL={mc:"Multiple Choice",tf:"True or False",fill:"Fill in the Blank",match:"Matching",order:"Word Ordering",short:"Short Answer"};
+const P={bk:"Breakfast is the (1) ______ important meal of the day. It provides the nutrients your body needs for good health, the calories it needs for (2) ______ and helps to maintain your blood sugar level. Studies have shown that people who don't have breakfast have a low blood sugar level (3) ______ are often slow, tired, hungry and unable to concentrate. Surprisingly, breakfast actually plays a part in weight control. It's easier to (4) ______ weight if you eat in the morning rather than later in the day. Dividing the day's calories into three meals helps take off weight more efficiently than (5) ______ breakfast and having two larger meals a day does.",
+hl:"EASY WAYS TO BE HEALTHIER\n\nChoosing Healthy Foods\nTry to eat a variety of foods. Make sure that you eat more fresh fruits and vegetables than high-fat food. You can also choose beans or tofu and low-fat milk for your meal. This can help you avoid obesity and provide you a lot of vitamins.\n\nGetting Some Exercise\nYou can do some easy movements right after you get up. Try to work out at least half an hour or an hour at a gym a day or walk around your neighborhood. Exercise improves the body in many ways. It makes your heart and muscles become stronger. It is one of the most important parts of keeping your body at a healthy weight.\n\nAvoiding Bad Habits\nSome habits are really unhealthy such as staying up late or working too hard. You should sleep enough and take a rest after working for a long time. Remember to shower and clean your teeth every day."};
+const M=(r,q,o,a,e,x)=>({r,t:"mc",q,o,a,e,...x}),
+T=(r,q,v,e,p)=>({r,t:"tf",q,o:["True","False"],a:v?0:1,e,p}),
+F=(r,q,a,e)=>({r,t:"fill",q,a,e}),
+X=(r,q,pr,e)=>({r,t:"match",q,pr,e}),
+O=(r,a,e)=>({r,t:"order",q:"Reorder the words to make a correct sentence.",a,e}),
+S=(r,q,m,k,e)=>({r,t:"short",q,m,k,e});
+const MT="Complete the sentence with the correct word form.";
+const BANK=[
+// ROUND 1 – VOCABULARY
+M(0,"My uncle usually takes a lot of _____ photos.",["beauty","beautify","beautiful","beautifully"],2,"Cần tính từ đứng trước danh từ 'photos': beautiful (đẹp)."),
+M(0,"Reading books helps to _____ our knowledge.",["widen","width","widely","wide"],0,"Sau 'to' cần động từ: widen (mở rộng)."),
+M(0,"Model making is a _____ way of spending free time.",["wonderfully","wonderful","wonder","wondering"],1,"a + tính từ + danh từ 'way' → wonderful (tuyệt vời)."),
+M(0,"My brother plays football very _____.",["skill","skilled","skillful","skillfully"],3,"Cần trạng từ bổ nghĩa cho động từ 'plays': skillfully."),
+M(0,"Nick's hobby is collecting stamps. He is a stamp _____.",["collecting","collection","collector","collective"],2,"Chỉ người: collector (người sưu tầm)."),
+M(0,"Hoa is very _____ and she paints well.",["creation","creative","creativity","creatively"],1,"Sau 'very' + to be cần tính từ: creative (sáng tạo)."),
+M(0,"Lack of vitamin E can cause skin diseases and _____.",["tired","tiring","tiredness","tire"],2,"Sau 'and' cần danh từ song song với 'skin diseases': tiredness (sự mệt mỏi)."),
+M(0,"We should play sports to have good _____.",["health","healthy","healthily","healthier"],0,"good + danh từ: health (sức khỏe)."),
+M(0,"The teacher always speaks to us very _____ so everyone can understand.",["clearly","clearing","clear","cleared"],0,"Trạng từ bổ nghĩa cho 'speaks': clearly (rõ ràng)."),
+M(0,"Her performance was so _____ that the audience stood up to clap.",["impress","impressed","impressive","impressively"],2,"was so + tính từ chỉ tính chất sự việc: impressive (ấn tượng)."),
+M(0,"You should use sun cream to avoid _____.",["dim light","sunburn","flu","headache"],1,"Kem chống nắng giúp tránh sunburn (cháy nắng)."),
+M(0,"When you grow your own fruits and vegetables, you get all the fun of _____.",["building","camping","horse-riding","gardening"],3,"Trồng rau quả = gardening (làm vườn)."),
+M(0,"We _____ used bottles for notebooks at the school fair every month.",["give","donate","exchange","receive"],2,"exchange A for B = đổi A lấy B."),
+M(0,"Sitting in front of the computer for too long may _____ your eyes.",["hurt","get","pain","injure"],0,"hurt your eyes = làm đau mắt."),
+X(0,"Match the irregular verbs with their past forms.",[["do","did"],["go","went"],["buy","bought"],["take","took"],["grow","grew"]],"do–did, go–went, buy–bought, take–took, grow–grew."),
+X(0,"Match the irregular verbs with their past forms.",[["send","sent"],["give","gave"],["teach","taught"],["make","made"],["eat","ate"]],"send–sent, give–gave, teach–taught, make–made, eat–ate."),
+X(0,"Match the words with their Vietnamese meanings.",[["collect","thu gom"],["donate","quyên góp"],["provide","cung cấp"],["volunteer","tình nguyện"],["organize","tổ chức"]],"collect: thu gom; donate: quyên góp; provide: cung cấp; volunteer: tình nguyện; organize: tổ chức."),
+// ROUND 2 – GRAMMAR
+M(1,"You will be healthier if you eat _____ fruits and vegetables.",["more","less","fewer","little"],0,"'more' + danh từ số nhiều/không đếm được; hợp nghĩa 'ăn nhiều hơn'."),
+M(1,"My dad enjoys _____ his bike to work.",["to ride","ride","rides","riding"],3,"enjoy + V-ing."),
+M(1,"My father loved _____ horse-riding when he lived in France.",["doing","going","playing","taking"],1,"go horse-riding (đi cưỡi ngựa)."),
+M(1,"I think, collecting stamps _____ interesting.",["are","is","were","will be"],1,"Chủ ngữ V-ing (số ít) + is; ý kiến ở hiện tại."),
+M(1,"Last year, our school _____ hundreds of books to children in rural areas.",["donate","donated","donates","will donate"],1,"'Last year' → quá khứ đơn: donated."),
+M(1,"Last year, I _____ to a children's village with my teacher and my friends.",["go","am going","went","will go"],2,"'Last year' → quá khứ đơn: went."),
+M(1,"My father _____ as a doctor 3 years ago.",["worked","works","to work","is working"],0,"'3 years ago' → quá khứ đơn: worked."),
+M(1,"_____ you start a community garden project last month?",["Were","Did","Do","Will"],1,"'last month' → Did + S + V."),
+M(1,"Mai and Lan _____ play badminton on Mondays. They _____ it at the weekends.",["aren't / play","didn't / played","doesn't / play","don't / play"],3,"Chủ ngữ số nhiều, thói quen → don't + V; 'They play it at the weekends'."),
+M(1,"My classmate often _____ food and clothes to charitable organizations.",["provides","is providing","provide","will provide"],0,"'often' → hiện tại đơn; chủ ngữ số ít → provides."),
+M(1,"We _____ at school last week, we _____ trees and flowers in the park.",["weren't / planted","didn't / planted","don't / plant","aren't / plant"],0,"'last week' → quá khứ: weren't at school; planted trees."),
+M(1,"She _____ her classroom at the moment.",["cleans","is cleaning","cleaned","will clean"],1,"'at the moment' → hiện tại tiếp diễn."),
+M(1,"Where _____ you yesterday afternoon?",["did","do","were","are"],2,"'yesterday' + to be → were."),
+F(1,"When Tom was a teenager, his hobby ___ (be) horse riding.","was","Quá khứ đơn: was."),
+F(1,"Alice often does judo at 5 p.m. every day, but today she ___ (do) some homework.","is doing","'today' (nhấn mạnh hiện tại) → hiện tại tiếp diễn."),
+F(1,"Do you know that the sun always ___ (rise) in the East?","rises","Sự thật hiển nhiên → hiện tại đơn: rises."),
+F(1,"Look! Toby ___ (have) some fast food again!","is having","'Look!' → hiện tại tiếp diễn."),
+F(1,"When I was in Nha Trang last month, I ___ (collect) some beautiful seashells.","collected","Quá khứ đơn: collected."),
+F(1,"Look at you! Why ___ you ___ (pick) up litter? – To save the environment.","are|picking","Hành động đang diễn ra → are you picking."),
+F(1,"___ Jenny ___ (volunteer) in the local hospital last summer?","Did|volunteer","'last summer' → Did + S + V (nguyên mẫu)."),
+F(1,"Trung never ___ (watch) TV before finishing all his homework.","watches","'never' → hiện tại đơn; Trung số ít → watches."),
+F(1,"I ___ (not study) now because I feel very tired.","am not studying/'m not studying","'now' → hiện tại tiếp diễn phủ định."),
+F(1,"Someone ___ (throw) away a pile of rubbish on the pavement yesterday.","threw","'yesterday' → quá khứ; throw – threw."),
+// ROUND 3 – PRONUNCIATION
+M(2,"Find the word whose underlined part is pronounced differently.",["togeth<u>er</u>","pref<u>er</u>","teach<u>er</u>","work<u>er</u>"],1,"prefer có /ɜː/; các từ còn lại đọc /ə/."),
+M(2,"Find the word whose underlined part is pronounced differently.",["s<u>ur</u>f","n<u>ur</u>se","ret<u>ur</u>n","fut<u>ur</u>e"],3,"future /ˈfjuːtʃə/ đọc /ə/; các từ còn lại /ɜː/."),
+M(2,"Find the word whose underlined part is pronounced differently.",["m<u>o</u>ther","s<u>o</u>me","y<u>o</u>ga","c<u>o</u>me"],2,"yoga /ˈjəʊɡə/ đọc /əʊ/; các từ còn lại /ʌ/."),
+M(2,"Find the word whose underlined part is pronounced differently.",["m<u>a</u>ke","exch<u>a</u>nge","<u>a</u>mazing","don<u>a</u>te"],2,"amazing: a đọc /ə/; các từ còn lại /eɪ/."),
+M(2,"Find the word whose underlined part is pronounced differently.",["volunteer<u>ed</u>","want<u>ed</u>","learn<u>ed</u>","play<u>ed</u>"],1,"wanted đọc /ɪd/ (sau t, d); các từ còn lại /d/."),
+M(2,"Find the word whose underlined part is pronounced differently.",["help<u>ed</u>","pick<u>ed</u>","need<u>ed</u>","watch<u>ed</u>"],2,"needed /ɪd/; helped, picked, watched đọc /t/."),
+M(2,"Find the word whose underlined part is pronounced differently.",["clean<u>ed</u>","learn<u>ed</u>","organiz<u>ed</u>","donat<u>ed</u>"],3,"donated /ɪd/; các từ còn lại /d/."),
+M(2,"Find the word whose underlined part is pronounced differently.",["collect<u>ed</u>","provid<u>ed</u>","visit<u>ed</u>","tidi<u>ed</u>"],3,"tidied /d/; các từ còn lại /ɪd/."),
+M(2,"Find the word whose underlined part is pronounced differently.",["pick<u>ed</u>","help<u>ed</u>","tidi<u>ed</u>","miss<u>ed</u>"],2,"tidied /d/; picked, helped, missed đọc /t/."),
+M(2,"Find the word whose underlined part is pronounced differently (/f/ or /v/).",["<u>f</u>uture","<u>ph</u>ysical","wonder<u>f</u>ul","<u>v</u>isited"],3,"visited bắt đầu bằng /v/; các từ còn lại có âm /f/."),
+M(2,"Find the word which has a different stress pattern.",["duty","tutor","model","avoid"],3,"avoid nhấn âm 2; các từ còn lại nhấn âm 1."),
+M(2,"Find the word which has a different stress pattern.",["healthy","sunburn","exchange","outdoor"],2,"exchange nhấn âm 2; các từ còn lại nhấn âm 1."),
+M(2,"Find the word which has a different stress pattern.",["reuse","service","patient","water"],0,"reuse nhấn âm 2; các từ còn lại nhấn âm 1."),
+M(2,"Find the word which has a different stress pattern.",["collect","disease","cardboard","donate"],2,"cardboard nhấn âm 1; các từ còn lại nhấn âm 2."),
+M(2,"Find the word which has a different stress pattern.",["recycle","reuse","exchange","nature"],3,"nature nhấn âm 1; các từ còn lại nhấn âm 2."),
+M(2,"Find the word which has a different stress pattern.",["benefit","activity","wonderful","physical"],1,"activity nhấn âm 2; các từ còn lại nhấn âm 1."),
+M(2,"Find the word which has a different stress pattern.",["gardening","popular","creativity","benefit"],2,"creativity nhấn âm 3; các từ còn lại nhấn âm 1."),
+M(2,"Find the word which has a different stress pattern.",["condition","community","volunteer","allergic"],2,"volunteer nhấn âm 3; các từ còn lại nhấn âm 2."),
+X(2,"Match each verb with the pronunciation of its -ed ending.",[["needed","/ɪd/"],["helped","/t/"],["played","/d/"],["watched","/t/"],["visited","/ɪd/"]],"/ɪd/ sau t, d; /t/ sau các âm vô thanh (p, k, ch, s, f...); /d/ các trường hợp còn lại."),
+// ROUND 4 – COMMUNICATION
+M(3,"A: I donated books and clothes to street children.  B: _____",["Sounds like great work!","I don't know.","Never mind.","No, I don't."],0,"Khen ngợi việc làm cộng đồng: Sounds like great work!"),
+M(3,"A: We collected a lot of clothes for poor people 3 months ago.  B: _____",["Yes, let's","Sounds like great work","I like it a lot","Yes, very much"],1,"Đáp lại lời kể về việc tốt bằng lời khen: Sounds like great work."),
+M(3,"A: We tutored street children and planted trees and flowers in the school yard yesterday.  B: _____",["Wonderful","Sorry","You're welcome","Oh, yes"],0,"Wonderful! là lời khen phù hợp."),
+M(3,"A: Do you like watching TV in your free time?  B: _____",["Yes, that's great","Yes, I did","Yes, they do","Yes, very much"],3,"Do you like...? → Yes, very much."),
+M(3,"A: My eyes are tired.  B: _____",["You can use eyedrops.","Sounds like great work!","Yes, very much.","You're welcome."],0,"Đưa lời khuyên cho vấn đề sức khỏe: You can use eyedrops."),
+M(3,"A: What about painting? Do you like it?  B: _____",["No, I don't.","No, I didn't.","Yes, it is.","Wonderful!"],0,"Do you like...? → Yes, I do / No, I don't."),
+F(3,"A: My eyes are tired. B: You can use eyedrops. And you ___ read in dim light. (advice: không nên)","shouldn't/should not","Lời khuyên không nên: shouldn't + V."),
+X(3,"Match each sentence with the best response.",[["Do you like reading books?","Yes, very much."],["My eyes are tired.","You can use eyedrops."],["I donated books and clothes to street children.","Sounds like great work!"]],"Chọn lời đáp phù hợp theo tình huống: sở thích – lời khuyên – lời khen."),
+// ROUND 5 – READING
+M(4,"Choose the best word for blank (1).",["healthy","tasty","main","most"],3,"the most important meal = bữa quan trọng nhất.",{p:"bk",h:1}),
+M(4,"Choose the best word for blank (2).",["strength","power","energy","effort"],2,"calories cung cấp energy (năng lượng).",{p:"bk",h:2}),
+M(4,"Choose the best word for blank (3).",["and","but","so","because"],0,"Hai kết quả song song: low blood sugar level AND are often slow, tired...",{p:"bk",h:3}),
+M(4,"Choose the best word for blank (4).",["lose","put","gain","drop"],0,"lose weight = giảm cân.",{p:"bk",h:4}),
+M(4,"Choose the best word for blank (5).",["skipping","making","buying","serving"],0,"skipping breakfast = bỏ bữa sáng.",{p:"bk",h:5}),
+M(4,"What is healthy food?",["High-fat food","High-fat milk","Fresh fruit"],2,"Bài đọc: ăn nhiều trái cây và rau tươi hơn thức ăn nhiều chất béo.",{p:"hl"}),
+M(4,"What is the most important part of controlling your weight?",["Choose healthy food","Get some exercise","Avoid bad habits"],1,"Bài đọc: Exercise is one of the most important parts of keeping your body at a healthy weight.",{p:"hl"}),
+M(4,"Which is a bad habit?",["Work too hard","Brush teeth daily","Shower daily"],0,"Bài đọc: staying up late or working too hard.",{p:"hl"}),
+M(4,"How good is it if you do regular exercise?",["Your heart is stronger.","Your teeth are healthier.","Your work is better."],0,"Bài đọc: It makes your heart and muscles become stronger.",{p:"hl"}),
+M(4,"What is the purpose of this passage?",["To advise people to love others fully.","To change people's ideas of life.","To give people some health advice."],2,"Bài viết đưa ra lời khuyên để khỏe mạnh hơn.",{p:"hl"}),
+T(4,"Exercise makes your heart and muscles stronger.",true,"Đúng: It makes your heart and muscles become stronger.","hl"),
+T(4,"The passage says you should eat more high-fat food than fruits and vegetables.",false,"Sai: nên ăn nhiều trái cây và rau hơn thức ăn nhiều chất béo.","hl"),
+T(4,"Staying up late is an unhealthy habit.",true,"Đúng: Some habits are really unhealthy such as staying up late.","hl"),
+T(4,"Breakfast plays a part in weight control.",true,"Đúng: breakfast actually plays a part in weight control.","bk"),
+// ROUND 6 – WRITING
+O(5,"I like drawing pictures and playing sports.","like + V-ing; drawing pictures and playing sports."),
+O(5,"Do you like flying kites in the summer?","Do you like + V-ing ...?"),
+O(5,"You can avoid sore eyes by using eyedrops.","avoid + danh từ; by + V-ing."),
+O(5,"Many students like listening to music or watching TV in their free time.","Many students like listening to music or watching TV in their free time./Many students like watching TV or listening to music in their free time.","like + V-ing, hai hoạt động nối bằng 'or'."),
+O(5,"What can we do to help clean the environment?","What can we do to + V ...?"),
+O(5,"Many young boys and girls have acne.","Many + danh từ số nhiều + have."),
+O(5,"You should eat more vegetables and drink more water.","You should eat more vegetables and drink more water./You should drink more water and eat more vegetables.","should + V nguyên mẫu để đưa lời khuyên."),
+O(5,"We should play badminton or walk every day to keep fit.","We should play badminton or walk every day to keep fit./We should walk every day or play badminton to keep fit.","should + V; to keep fit = để giữ dáng."),
+O(5,"Community service is a great way to help others.","Community service is a great way to help others.","a way to + V."),
+O(5,"She was tired when she came home yesterday.","She was tired when she came home yesterday./When she came home yesterday, she was tired.","Quá khứ đơn: was / came."),
+S(5,"Complete the second sentence so that it means the same as the first one.\nHe feels excited whenever he watches a football match.\n→ He thinks _____",
+"He thinks watching a football match is exciting.",["watch","football","exciting|excited|interesting|fun"],"Mẫu: He thinks watching a football match is exciting."),
+S(5,"Complete the second sentence so that it means the same as the first one.\nHer dollhouse has seven rooms.\n→ There _____",
+"There are seven rooms in her dollhouse.",["there (are|is)","seven","rooms?","dollhouse"],"Mẫu: There are seven rooms in her dollhouse."),
+S(5,"Complete the second sentence so that it means the same as the first one.\nIt's not good to stay up late to listen to music.\n→ You shouldn't _____",
+"You shouldn't stay up late to listen to music.",["stay up late","listen","music"],"Mẫu: You shouldn't stay up late to listen to music."),
+S(5,"Complete the second sentence so that it means the same as the first one.\nLet's do something outdoors this afternoon.\n→ How about _____ ?",
+"How about doing something outdoors this afternoon?",["doing|going|playing|having","outdoor","afternoon"],"How about + V-ing ...?"),
+S(5,"Complete the second sentence so that it means the same as the first one.\nWhat food do you like most?\n→ What's _____ ?",
+"What's your favourite food?",["your","favou?rite","food"],"like most = favourite.")
+];
+
+const $=id=>document.getElementById(id),app=$("app"),how=$("how");
+const norm=s=>(s||"").toLowerCase().replace(/[’‘]/g,"'").replace(/[.,?!]/g,"").replace(/\s+/g," ").trim();
+const strip=s=>s.replace(/<[^>]+>/g,"");
+const shuf=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a};
+let S0={n:20,mode:"practice",name:""},G=null,cx=null;
+function beep(ok){try{cx=cx||new(window.AudioContext||window.webkitAudioContext)();const o=cx.createOscillator(),g=cx.createGain();o.connect(g);g.connect(cx.destination);o.type="sine";const t=cx.currentTime;o.frequency.setValueAtTime(ok?660:220,t);if(ok)o.frequency.setValueAtTime(880,t+.12);g.gain.setValueAtTime(.15,t);g.gain.exponentialRampToValueAtTime(.001,t+.3);o.start(t);o.stop(t+.3)}catch(e){}}
+
+function home(){
+app.innerHTML=`<div class="card c"><div class="big">🎓</div><h1>ENGLISH 7 – MID-TERM 1 REVISION</h1><p style="font-size:20px;font-weight:700;color:#8e5cf0">Ready to challenge yourself?</p>
+<p>Hobbies • Healthy living • Community service<br>${BANK.length} questions • 6 rounds</p>
+<input class="nm" id="nm" placeholder="Your name" value="${S0.name}" maxlength="24">
+<h3>Number of questions</h3><div class="chips" id="cn">${[20,40,60,"ALL"].map(n=>`<button class="${S0.n==n?'on':''}" onclick="S0.n='${n}';home()">${n==="ALL"?"ALL QUESTIONS":n}</button>`).join("")}</div>
+<h3>Game mode</h3><div class="chips">${[["practice","Practice Mode"],["challenge","Challenge Mode"]].map(m=>`<button class="${S0.mode==m[0]?'on':''}" onclick="S0.mode='${m[0]}';home()">${m[1]}</button>`).join("")}</div>
+<p><button class="pri" onclick="start()">START GAME ▶</button><button class="sec" onclick="how.style.display='flex'">HOW TO PLAY</button></p></div>`;
+$("nm").oninput=e=>S0.name=e.target.value}
+
+function start(){
+S0.name=($("nm").value||"").trim();
+let n=S0.n==="ALL"?BANK.length:+S0.n,qs=[];
+if(n>=BANK.length)qs=BANK.slice();else{
+ for(let r=0;r<6;r++){const g=shuf(BANK.filter(q=>q.r===r));qs=qs.concat(g.slice(0,Math.max(1,Math.round(n*g.length/BANK.length))))}
+ qs=shuf(qs).slice(0,n)}
+qs=[].concat(...[0,1,2,3,4,5].map(r=>shuf(qs.filter(q=>q.r===r))));
+// keep reading questions of one passage together
+qs.sort((a,b)=>a.r-b.r||(a.r===4?(a.p===b.p?(a.h||0)-(b.h||0):a.p<b.p?-1:1):0));
+G={qs,i:0,score:0,streak:0,res:[],t0:Date.now(),done:false,hint:false,sel:null,ord:[],pool:[]};
+show()}
+
+function timer(){const t=G?Math.floor((Date.now()-G.t0)/1000):0;return`${(t/60|0)}:${String(t%60).padStart(2,"0")}`}
+setInterval(()=>{const e=$("tm");if(e&&G&&!G.fin)e.textContent="⏱ "+timer()},1000);
+
+function show(){
+const q=G.qs[G.i];G.done=false;G.hint=false;G.sel=null;G.ord=[];
+let body="";
+if(q.p){let t=P[q.p].replace(/&/g,"&amp;").replace(/</g,"&lt;");if(q.h)t=t.replace(`(${q.h}) ______`,`<mark>(${q.h}) ______</mark>`);body+=`<div class="pass">${t}</div>`}
+if(q.t==="mc"||q.t==="tf")body+=`<div class="q">${q.q}</div>`+q.o.map((o,i)=>`<button class="opt" id="o${i}" onclick="pick(${i})"><b>${"ABCD"[i]}.</b> ${o}</button>`).join("");
+else if(q.t==="fill")body+=`<div class="q">${q.q.replace(/___/g,'<input class="fi" autocomplete="off" autocapitalize="off">')}</div>`;
+else if(q.t==="short")body+=`<div class="q">${q.q.replace(/\n/g,"<br>")}</div><textarea id="ta" placeholder="Type your answer here..."></textarea>`;
+else if(q.t==="match"){const rs=[...new Set(q.pr.map(p=>p[1]))].sort();body+=`<div class="q">${q.q}</div>`+shuf(q.pr).map(p=>`<div class="mr"><b>${p[0]}</b><select data-l="${p[0]}"><option value="">— choose —</option>${rs.map(r=>`<option>${r}</option>`).join("")}</select></div>`).join("")}
+else if(q.t==="order"){const w=q.a.split("/")[0].replace(/[.?!]$/,"").split(" ").map((x,i)=>i===0&&!/^(I|TV)$/.test(x)?x.toLowerCase():x);G.pool=shuf(w.map((x,i)=>({x,i})));body+=`<div class="q">${q.q}</div><div class="zone" id="zo"></div><div id="po"></div>`}
+const pct=G.i/G.qs.length*100;
+app.innerHTML=`<div class="card"><div class="top"><span>${RI[q.r]} ${RT[q.r]}</span><span>⭐ ${G.score}</span><span>🔥 ${G.streak}</span>${S0.mode==="challenge"?'<span id="tm">⏱ '+timer()+'</span>':""}</div>
+<div class="bar"><i style="width:${pct}%"></i></div><div class="top"><span>Question ${G.i+1} / ${G.qs.length}</span><span class="tag">${TL[q.t]}</span></div>
+${body}<div id="fb"></div><div class="c"><button class="pri" id="sb" onclick="submit()">SUBMIT ANSWER</button>${S0.mode==="challenge"&&q.t==="mc"?'<button class="sec" id="hb" onclick="hint()">💡 50/50 (-5)</button>':""}<button class="pri" id="nb" onclick="next()" disabled>NEXT QUESTION ▶</button></div></div>`;
+if(q.t==="order")draw()}
+
+function pick(i){if(G.done)return;G.sel=i;G.qs[G.i].o.forEach((_,k)=>$("o"+k).classList.toggle("sel",k===i))}
+function hint(){const q=G.qs[G.i];if(G.done||G.hint)return;G.hint=true;G.score=Math.max(0,G.score-5);
+shuf(q.o.map((_,i)=>i).filter(i=>i!==q.a)).slice(0,2).forEach(i=>{$("o"+i).classList.add("hid");if(G.sel===i)G.sel=null});$("hb").disabled=true}
+function draw(){$("zo").innerHTML=G.ord.map(k=>`<span class="w" onclick="rm(${k.i})">${k.x}</span>`).join("");
+$("po").innerHTML=G.pool.filter(p=>!G.ord.includes(p)).map(p=>`<span class="w" onclick="add(${p.i})">${p.x}</span>`).join("")}
+function add(i){if(G.done)return;G.ord.push(G.pool.find(p=>p.i===i));draw()}
+function rm(i){if(G.done)return;G.ord=G.ord.filter(p=>p.i!==i);draw()}
+
+function grade(q){
+if(q.t==="mc"||q.t==="tf")return G.sel===null?null:{ok:G.sel===q.a,ua:q.o[G.sel]};
+if(q.t==="fill"){const v=[...document.querySelectorAll(".fi")].map(e=>e.value);if(v.some(x=>!x.trim()))return null;const b=q.a.split("|");return{ok:b.every((a,i)=>a.split("/").map(norm).includes(norm(v[i]))),ua:v.join(" / ")}}
+if(q.t==="short"){const v=$("ta").value;if(!v.trim())return null;const n=norm(v);return{ok:q.k.every(k=>new RegExp(k,"i").test(n)),ua:v}}
+if(q.t==="match"){const s=[...document.querySelectorAll(".mr select")];if(s.some(x=>!x.value))return null;const ok=s.every(x=>q.pr.find(p=>p[0]===x.dataset.l)[1]===x.value);return{ok,ua:s.map(x=>x.dataset.l+" → "+x.value).join("; ")}}
+if(q.t==="order"){if(G.ord.length!==G.pool.length)return null;const u=norm(G.ord.map(k=>k.x).join(" "));return{ok:q.a.split("/").map(norm).includes(u),ua:G.ord.map(k=>k.x).join(" ")}}}
+function ansText(q){
+if(q.t==="mc"||q.t==="tf")return strip(q.o[q.a]);
+if(q.t==="fill")return q.a.split("|").map(a=>a.split("/")[0]).join(" / ");
+if(q.t==="short")return q.m;if(q.t==="order")return q.a.split("/")[0];
+return q.pr.map(p=>p[0]+" → "+p[1]).join("; ")}
+
+function submit(){
+if(G.done)return;const q=G.qs[G.i],r=grade(q);
+if(!r){$("fb").innerHTML='<div class="fb no">Please answer the question first!</div>';return}
+G.done=true;let add=0;
+if(r.ok){G.streak++;add=10+(G.streak>=3?5:0);G.score+=add}else G.streak=0;
+G.res.push({q,ok:r.ok,ua:r.ua});
+document.querySelectorAll("input,textarea,select").forEach(e=>e.disabled=true);
+if(q.t==="mc"||q.t==="tf"){q.o.forEach((_,k)=>{const b=$("o"+k);b.disabled=true;if(k===q.a)b.classList.add("ok");else if(k===G.sel)b.classList.add("bad")})}
+const last=G.i===G.qs.length-1||G.qs[G.i+1].r!==q.r;
+const badge=last?`<small>🏅 Badge earned: ${RN[q.r]} Explorer – round complete!</small>`:"";
+$("fb").innerHTML=r.ok?`<div class="fb ok">✅ ⭐ Excellent! Correct answer! +${add}${G.streak>=3?" (streak bonus 🔥)":""}<small>${q.e||""}</small>${badge}</div>`
+:`<div class="fb no">❌ Oops! Try to remember this.<small>Correct answer: <b>${ansText(q)}</b></small><small>${q.e||""}</small>${badge}</div>`;
+beep(r.ok);$("sb").disabled=true;$("nb").disabled=false;if($("hb"))$("hb").disabled=true;
+$("nb").textContent=G.i===G.qs.length-1?"FINISH 🏁":"NEXT QUESTION ▶"}
+function next(){if(!G.done)return;if(++G.i>=G.qs.length)finish();else show()}
+
+function finish(){
+G.fin=true;const tot=G.qs.length,ok=G.res.filter(x=>x.ok).length,pc=Math.round(ok/tot*100);
+const [st,title,cls]=pc>=90?[3,"English Superstar","🏆"]:pc>=70?[2,"Great Job","🥈"]:pc>=50?[1,"Keep Practicing","🥉"]:[0,"Try Again – You Can Do It!","💪"];
+const rs=RN.map((n,r)=>{const a=G.res.filter(x=>x.q.r===r);return{n,t:a.length,c:a.filter(x=>x.ok).length}}).filter(x=>x.t);
+const rate=x=>x.c/x.t,best=rs.slice().sort((a,b)=>rate(b)-rate(a))[0],worst=rs.slice().sort((a,b)=>rate(a)-rate(b))[0];
+const msg=pc>=90?`You are a ${best.n} Hero! Fantastic work!`:`Great effort! You are strong in ${best.n}. Keep practicing your ${worst.n.toLowerCase()}!`;
+app.innerHTML=`<div class="card c"><div class="big">${cls}</div><h1>${S0.name?S0.name+", ":""}you finished!</h1>
+<div class="stars">${"⭐".repeat(st)}${"☆".repeat(3-st)}</div><h3>${title}</h3><p style="font-weight:600">${msg}</p>
+<div class="stat"><div><b>${tot}</b>Questions</div><div><b>${ok}</b>Correct</div><div><b>${tot-ok}</b>Wrong</div><div><b>${G.score}</b>Score</div><div><b>${pc}%</b>Accuracy</div>${S0.mode==="challenge"?`<div><b>${timer()}</b>Time</div>`:""}</div>
+<table><tr><th>Round</th><th>Correct</th><th>Rate</th></tr>${rs.map(x=>`<tr><td>${x.n}</td><td>${x.c}/${x.t}</td><td>${Math.round(rate(x)*100)}%</td></tr>`).join("")}</table>
+<p>${rs.map(x=>x.c===x.t?`<span class="tag">🏅 ${x.n} Master</span>`:"").join("")}</p>
+<button class="pri" onclick="start()">PLAY AGAIN</button><button class="sec" onclick="review()" ${ok===tot?"disabled":""}>REVIEW WRONG ANSWERS</button><button class="sec" onclick="home()">BACK TO HOME</button></div>`}
+
+function review(){
+const w=G.res.filter(x=>!x.ok);
+app.innerHTML=`<div class="card"><h1>Review Wrong Answers (${w.length})</h1>${w.map((x,i)=>`<div class="rv"><b>${i+1}. [${RN[x.q.r]}]</b> ${x.q.q.replace(/\n/g,"<br>")}<br>❌ Your answer: ${strip(String(x.ua))}<br>✅ Correct: <b>${ansText(x.q)}</b><br><small>${x.q.e||""}</small></div>`).join("")}
+<div class="c"><button class="sec" onclick="finish()">◀ BACK TO RESULTS</button><button class="pri" onclick="home()">BACK TO HOME</button></div></div>`}
+home();
+</script></body></html>
